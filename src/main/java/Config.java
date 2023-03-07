@@ -16,19 +16,21 @@ public class Config {
     static boolean usePopupDialogBoxesForErrors;
     static boolean openNotepad;
 
-    public static void init() {
+    public static void init() throws FileNotFoundException, InterruptedException {
         File file = new File(Main.DATA_PATH + "\\config.cfg");
         Yaml yaml = new Yaml();
         try {
             config = yaml.load(new FileReader(file));
+//            if(!file.exists()) throw new FileNotFoundException(file.getAbsolutePath());
         } catch(FileNotFoundException e) {
             Utils.error("The config.cfg was not found at " + Main.DATA_PATH + "\\config.cfg" + "!\n " +
                     "This is, likely, because the whole data folder is in the wrong directory or\n " +
-                    "it doesn't exist.", "");
+                    "it doesn't exist.", "File not found");
+            throw e;
         }
 
-        usePopupDialogBoxesForErrors = (boolean) config.get("pop_up_dialog_boxes");
-        openNotepad = (boolean) config.get("open_notepad");
+        usePopupDialogBoxesForErrors = (boolean) config.getOrDefault("pop_up_dialog_boxes", true);
+        openNotepad = (boolean) config.getOrDefault("open_notepad", true);
 
     }
 
@@ -67,12 +69,19 @@ public class Config {
             HashMap<String, Object> section = (HashMap<String, Object>)     profile.get("wallpaper");
 
             current.useImage = (boolean) section.get("use_image"); // "wallpaper: " section
-            if (current.useImage)
+            if (current.useImage) {
                 current.imagePath = (String) section.get("image_path");
+                File imageFile = new File(current.imagePath.replace("$DATA_DIR", Main.DATA_PATH));
+                if(!imageFile.exists()) {
+                    Utils.error("The file at path: \"" + imageFile + "\" does not exist!", "File not found");
+                    throw new FileNotFoundException(imageFile.getAbsolutePath());
+                }
+            }
             else {
-                current.background = decodeButBetter((String) section.get("bg_color"));
-                current.width = (int) section.get("width");
-                current.height = (int) section.get("height");
+                Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+                current.background = decodeButBetter((String) section.getOrDefault("bg_color", "#ff14"));
+                current.width = (int) section.getOrDefault("width", size.width);
+                current.height = (int) section.getOrDefault("height", size.height);
             }
         }
 

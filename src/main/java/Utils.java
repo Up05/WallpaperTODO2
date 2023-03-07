@@ -10,9 +10,8 @@ public class Utils {
         if(!Config.usePopupDialogBoxesForErrors) return;
 
         JOptionPane.getRootFrame().setAlwaysOnTop(true);
-        JOptionPane.showMessageDialog(null, message, title != null ? title : "Error message", JOptionPane.ERROR_MESSAGE);
-
-
+//        JOptionPane.showMessageDialog(null, message, title != null ? title : "Error message", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showConfirmDialog(null, message, title != null ? title : "Error message", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
 
 
     }

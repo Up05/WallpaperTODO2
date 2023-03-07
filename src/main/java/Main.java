@@ -46,11 +46,7 @@ public class Main {
         if(current.useImage) {
             File imageFile = new File(current.imagePath.replace("$DATA_DIR", DATA_PATH));
             if(!imageFile.exists()) {
-                System.out.println(
-                        Chalk.on("No image found at path: \"").red().bold() + "" +
-                                Chalk.on(imageFile.getAbsolutePath()).blue().underline() +
-                                Chalk.on("\"").red().bold()
-                );
+                Utils.error("Image not found at path: \"" + imageFile.getAbsolutePath() + "\"", "No file found");
                 return;
             }
             wallpaper = ImageIO.read(imageFile);
@@ -66,8 +62,6 @@ public class Main {
                 RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON
             );
-
-
 
                 graphics.setColor(current.background);
             if(!current.useImage)
