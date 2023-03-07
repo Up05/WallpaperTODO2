@@ -1,6 +1,8 @@
 # WallpaperTODO2
 A somewhat configurable, to do list program for Windows, which let's you easily write onto your wallpaper image. 
 
+![WallpaperTODO2 showcase](https://user-images.githubusercontent.com/56165675/223472235-e3d606e1-00ad-4849-a183-9d5207eba385.jpg)
+
 After installing the program: in your `%LocalAppData%\Ult1\WallpaperTODO2` folder you can find `config.cfg` & `profiles` directory,  
 `config.cfg` has some general options,  
 while `\profiles` let you customise the look of the wallpaper. YAML is used for all configuration files.
@@ -17,6 +19,7 @@ All default profiles have line labels such as:
   - `!`  (important); 
   - `HW` (homework); 
   - `ND` (alias for homework („namų darbai" meaning "homework" in my native tongue)).
+
 
 All profiles *(currently unconfigurable, although, it might become configurable)*: 
   - `#` (comment) and the line starting with this will **not** be drawn onto the wallpaper.
