@@ -60,7 +60,7 @@ It's properties:
   
 ### `wallpaper`
 
-If (boolean) `use_image`: is set to true:
+If (boolean) `use_image` is set to true:
   - (string) `image_path`: is a link to a file. *A macro: "$DATA_DIR" exists, it is replaced by [%LocalAppData%\Ult1\WallpaperTODO2](https://api.yomomma.info/)*
 Otherwise:
   - (string) `bg_color`: *I should really rename this to `color`...*, either way, it's the color of the background, (obviously) it should be opaque.
