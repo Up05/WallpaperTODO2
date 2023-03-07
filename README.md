@@ -46,7 +46,7 @@ This refers to the style of the actual text, in case of (for example) HTML, this
   - (int) `style`: all possible styles are: `0`(`Plain`), `1`(`Bold`), `2`(`Italic`), `4`(Underlined). To use multiple styles, simply concatinate the numbers, e.g. `14` would give you a bold and underlined text.
   - (int) `weight`: the "boldness" of the text, all possible values are: [0; 9].
 
-`text` section also has (List<Map> *or* Object[]) `labels`, with all the same properties as it's parent(`text`) and also (List<String> *or* String[]) `symbols`, which is for specifying the symbols, lines need to start with for the styling to apply, e.g.: " ! WATER THE CACTUS    Sunday" would (by default) be bold red. Also, notice how there is a space at the very start of the line, this is optional, but **in case the first character of a line is a space, it will be ignored**, despite that **it isn't meant to work with unicode spaces**.
+`text` section also has (List<Map> *or* Object[]) `labels`, with all the same properties as it's parent(`text`) and also (List<String> *or* String[]) `symbols`, which is for specifying the symbols, lines need to start with for the styling to apply, e.g.: ` ! WATER THE CACTUS    Sunday` would (by default) be bold red. Also, notice how there is a space at the very start of the line, this is optional, but **in case the first character of a line is a space, it will be ignored**, despite that **it isn't meant to work with unicode spaces**.
 
 ### `text_box`
 
