@@ -87,13 +87,13 @@ Examples of value hex in profiles.yml:
   - "#7fff0000" - semi-transparent red
   - "#deadbeef" - slightly transparent light blue
   
-*I am pretty sure, that capital letters work as hex codes. ¯\_(ツ)_/¯*
+*I am pretty sure, that capital letters work as hex codes. ¯\\_(ツ)_/¯*
 
 
 ## FAQ
 
   - *WallpaperTODO1 exists.*
   - Q: Does it work on Linux and Mac?
-    A: I don't know, it's written in Java, so parts of it should work, although it certainly __won't set the wallpaper image__. Besides that, the paths might not work... ¯\_(ツ)_/¯
+    A: I don't know, it's written in Java, so parts of it should work, although it certainly __won't set the wallpaper image__. Besides that, the paths might not work... ¯\\_(ツ)_/¯
 
 
