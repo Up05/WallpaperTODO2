@@ -19,6 +19,8 @@ public class Main {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch(Exception ignored){}
 
+        Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler());
+
         AppDirs appDirs = AppDirsFactory.getInstance();
         DATA_PATH = appDirs.getUserDataDir("WallpaperTODO2", null, "Ult1");
 //        System.out.println(Chalk.on("Data path: " + DATA_PATH).blue().underline());

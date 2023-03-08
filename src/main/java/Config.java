@@ -44,20 +44,24 @@ public class Config {
         try {
             String name = (String) config.get("current_profile");
             File file = new File(Main.DATA_PATH + "\\profiles\\" + name + ".yml");
+            if (!file.exists()) {
+                Utils.error(
+                        "Current profile configuration file was not found!\n" +
+                                "Do not include the file extension \".yml\" in your profile name, \n" +
+                                "unless the file name for it is: \"myprofile.yml.yml\"\n File path: \"" +
+                                file.getAbsolutePath() + "\"",
+                        "Configuration file not found"
+                );
+
+                throw new FileNotFoundException("config.cfg#current_profile profile file not found at path: " + file.getAbsolutePath());
+            }
             Yaml yaml = new Yaml();
             profile = yaml.load(new FileReader(file));
         } catch(ClassCastException e) {
             Utils.error(
                     "The profile name (config.cfg#current_profile) must be a String. \n" +
                             "example profile name: `current_profile: \"1\"`!\n",
-                    null
-            );
-            throw e;
-        } catch(FileNotFoundException e){
-            Utils.error(
-                    "\"Do not include the file extension \\\".yml\\\" in your profile name, \n" +
-                            "unless the file name for it is: \\\"myprofile.yml.yml\\\"\"",
-                    null
+                    "Could not cast to String"
             );
             throw e;
         }
@@ -73,7 +77,7 @@ public class Config {
                 current.imagePath = (String) section.get("image_path");
                 File imageFile = new File(current.imagePath.replace("$DATA_DIR", Main.DATA_PATH));
                 if(!imageFile.exists()) {
-                    Utils.error("The file at path: \"" + imageFile + "\" does not exist!", "File not found");
+                    Utils.error("Wallpaper file at path: \"" + imageFile + "\" does not exist!", "File not found");
                     throw new FileNotFoundException(imageFile.getAbsolutePath());
                 }
             }
@@ -199,7 +203,7 @@ public class Config {
             r = Integer.decode(numbers[1]);
             g = Integer.decode(numbers[1]);
             b = Integer.decode(numbers[1]);
-        } // I didn't specify if this function is any good, it's just better than Color#decode(String nm)...
+        } // I didn't specify if this function is any good, it's just better than Color#decode(String nm)... For hexadecimal anyways...
 
         return new Color(r, g, b, a);
     }
