@@ -60,6 +60,8 @@ public class Main {
         {
             Graphics2D graphics = wallpaper.createGraphics();
 
+            GraphicsEnvironment.getLocalGraphicsEnvironment();
+
             graphics.setRenderingHint(
                 RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON
