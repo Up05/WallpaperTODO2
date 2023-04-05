@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
+import java.nio.charset.Charset;
 
 public class Main {
 
@@ -60,8 +61,6 @@ public class Main {
         {
             Graphics2D graphics = wallpaper.createGraphics();
 
-            GraphicsEnvironment.getLocalGraphicsEnvironment();
-
             graphics.setRenderingHint(
                 RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON
@@ -104,9 +103,45 @@ public class Main {
                 graphics.fillRect(current.margin - current.padding / 2, current.margin - current.padding / 2, width, height);
             }
 
+            int previousLineWidth = 0, y = current.margin;
+            main_loop:
+            for(int i = 0; i < lines.length; i ++){ // not rigidly tested
 
-            int previousLineWidth = 0;
-            int y = current.margin;
+                graphics.setFont(current.baseFont);
+
+                for(String labelKey : current.otherFonts.keySet()){
+                    if(firstCharsAre(lines[i], '#')) {
+
+                        continue main_loop;
+                    }
+                    if(firstCharsAre(lines[i], labelKey.toCharArray())){
+                        graphics.setFont(current.otherFonts.get(labelKey));
+                    }
+                }
+
+                if(!current.textBoxSolid && !current.textBoxBackground.equals(new Color(255, 0, 0, 0))){
+                    graphics.setColor(current.textBoxBackground);
+                    int width = graphics.getFontMetrics().stringWidth(lines[i]);
+                    int temp = previousLineWidth; previousLineWidth = width;
+                    if(temp > width)
+                        width = temp;
+                    int lastLinePadding = 0;
+                    if(i == lines.length - 1)
+                        lastLinePadding = current.padding;
+                    graphics.fillRect(
+                            current.margin - current.padding / 2,
+                            y,
+                            width + current.baseCharSize + current.padding,
+                            graphics.getFontMetrics().getHeight() + 2 + lastLinePadding
+                    );
+                }
+
+                y += graphics.getFontMetrics().getHeight() + 2;
+
+
+            }
+
+            y = current.margin;
             main_loop:
             for(int i = 0; i < lines.length; i ++){
 
@@ -122,24 +157,6 @@ public class Main {
                         graphics.setFont(current.otherFonts.get(labelKey));
                         currentColor = current.otherFonts.get(labelKey).getColor();
                     }
-                }
-
-                if(!current.textBoxSolid && !current.textBoxBackground.equals(new Color(255, 0, 0, 0))){ // !, NOT  transparent
-                    graphics.setColor(current.textBoxBackground);
-                    int width = graphics.getFontMetrics().stringWidth(lines[i]);
-                    int temp = previousLineWidth;
-                    previousLineWidth = width;
-                    if(temp > width)
-                        width = temp;
-                    int lastLinePadding = 0;
-                    if(i == lines.length - 1)
-                        lastLinePadding = current.padding;
-                    graphics.fillRect(
-                            current.margin - current.padding / 2,
-                            y,
-                            width + current.baseCharSize + current.padding,
-                            graphics.getFontMetrics().getHeight() + 2 + lastLinePadding
-                    );
                 }
 
                 graphics.setColor(currentColor);
