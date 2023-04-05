@@ -81,14 +81,14 @@ The Javascript's hexadecimal code has several versions, but often is: #rrggbb, #
 While here: the possible formats are: #rrggbb, #aarrggbb, #aall (l - lightness/grey brightnesss) and *only in `text_box`: transparent*.
 
 Examples of value hex in profiles.yml:
-  - "#ffff" - opaque white
-  - "#ff00" - opaque black
-  - "#0000" *same as "transparent"*
-  - "#00ff00" - opaque green
-  - "#7f0000" - dark-ish red *(exactly half of max brightness for red)*
-  - "#20000000" - very clear/transparent black
-  - "#7fff0000" - semi-transparent red
-  - "#deadbeef" - slightly transparent light blue
+  - `"#ffff"` - opaque white
+  - `"#ff00"` - opaque black
+  - `"#0000"` *same as "transparent"*
+  - `"#00ff00"` - opaque green
+  - `"#7f0000"` - dark-ish red *(exactly half of max brightness for red)*
+  - `"#20000000"` - very clear/transparent black
+  - `"#7fff0000"` - semi-transparent red
+  - `"#deadbeef"` - slightly transparent light blue
   
 *I am pretty sure, that capital letters work as hex codes. ¯\\_(ツ)_/¯*
 
